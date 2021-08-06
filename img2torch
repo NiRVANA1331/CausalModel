@@ -1,0 +1,21 @@
+import os
+import numpy as np
+from PIL import Image 
+import random
+import torch
+  
+# load the image and convert into
+# torch Tensor
+#img = Image.open('Sample.png')
+
+def dataread(folder_location):
+    height = 256
+    dim = (256,256)
+    dirfiles = os.listdir(folder_location)
+    s = np.zeros((len(dirfiles),height,height))
+    i = 0
+    for i in range(len(dirfiles)):
+        img = np.array(Image.open(folder_location + dirfiles[i]).resize((256,256)))
+        s[i] = img
+
+    return torch.Tensor(s)
