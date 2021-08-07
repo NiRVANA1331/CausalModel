@@ -5,17 +5,18 @@ import random
 import torch
   
 # load the image and convert into
-# torch Tensor
+# numpy array
 #img = Image.open('Sample.png')
-
+t = ()
 def dataread(folder_location):
     height = 256
     dim = (256,256)
     dirfiles = os.listdir(folder_location)
     s = np.zeros((len(dirfiles),height,height))
-    i = 0
+    name = np.zeros(len(dirfiles))
     for i in range(len(dirfiles)):
         img = np.array(Image.open(folder_location + dirfiles[i]).resize((256,256)))
         s[i] = img
-
-    return torch.Tensor(s)
+        name[i] = dirfiles[i][0]
+    t = (torch.Tensor(s),torch.Tensor(name))
+    return t
