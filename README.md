@@ -3,4 +3,4 @@
 
 #the dim of tensor = number of files x 256 x 256
 
-# it returns a tuple t with t[0] as tensor of image data, t[1] as label
+#it returns a tuple t with t[0] as tensor of image data, t[1] as label
