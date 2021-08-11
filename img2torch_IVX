@@ -1,0 +1,31 @@
+import os
+import numpy as np
+from PIL import Image 
+import random
+import torch
+  
+# load the image and convert into
+# numpy array
+#img = Image.open('Sample.png')
+t = ()
+def dataread(folder_location):
+    height = 256
+    dim = (256,256)
+    dirfiles = os.listdir(folder_location)
+    s = np.zeros((len(dirfiles),height,height))
+    name = np.zeros(len(dirfiles))
+    classif = np.zeros(len(dirfiles))
+    for i in range(len(dirfiles)):
+        img = np.array(Image.open(folder_location + dirfiles[i]).resize((256,256)))
+        s[i] = img
+        name[i] = dirfiles[i][0]
+        if name[i] == '1':
+            classif[i] = 'I'
+        elif name[i] == '5':
+            classif[i] = 'V'
+        elif name[i] == '10':
+            classif[i] = 'X'
+        else:
+            classif[i] = 'Multiple'
+    t = (torch.Tensor(s),torch.Tensor(classif),torch.Tensor(name))
+    return t
